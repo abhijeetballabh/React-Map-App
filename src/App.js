@@ -109,7 +109,7 @@ function App() {
 
   // // Fetch image from Unsplash based on place name
   // const fetchPlaceImages = async (placeName) => {
-  //   const unsplashApiUrl = `https://api.unsplash.com/search/photos?query=${placeName}&client_id=OZqxOKghgk7ptyQNpE9VYT3qajQIrmupMOmGzByXXz8`;
+  //   const unsplashApiUrl = `https://api.unsplash.com/search/photos?query=${placeName}&client_id=`;
 
   //   try {
   //     const response = await axios.get(unsplashApiUrl);
