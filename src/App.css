@@ -1,0 +1,156 @@
+/* Ensure the body takes full height */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+}
+
+/* Category Buttons: Position them in a horizontal row */
+.category-buttons {
+  position: absolute;
+  top: 80px; /* Adjusted for more space */
+  left: 50%; /* Position them horizontally */
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+  z-index: 1000;
+}
+
+.category-buttons button {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 25px; /* Oval shape */
+  padding: 12px 30px; /* Increase width for oval effect */
+  cursor: pointer;
+  font-size: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease;
+}
+
+.category-buttons button:hover {
+  background-color: #f0f0f0;
+}
+
+/* Search bar styles */
+.search-container {
+  position: absolute;
+  top: 20px; /* Placing it at the top */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+  background: white;
+  border-radius: 25px; /* Oval shape */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  padding: 10px;
+}
+
+/* Auto-suggest input field */
+.search-container .react-autosuggest__input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  font-size: 16px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.search-container .react-autosuggest__suggestions-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Places Panel: Left panel for displaying places */
+.places-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+  z-index: 1001;
+  overflow-y: auto;
+}
+
+.places-panel h3 {
+  margin-top: 0;
+}
+
+.places-panel ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.places-panel li {
+  margin-bottom: 10px;
+}
+
+/* Map: Make sure the map takes full height */
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.place-info-box {
+  position: fixed;
+  bottom: 20px; /* Position it just above the bottom */
+  left: 50%; /* Center it horizontally */
+  transform: translateX(-50%); /* Offset the 50% left to truly center it */
+  background-color: white;
+  padding: 15px;
+  border-radius: 30px; /* Oval shape */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow for visual depth */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 250px;
+  text-align: center;
+  z-index: 1000; /* Ensure it stays on top */
+}
+
+.place-info-box h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.place-info-box p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+/* Coordinates Box: Fixed at the bottom of the screen */
+/* Coordinates Box: Fixed at the bottom center of the screen */
+/* Coordinates Box: Fixed at the bottom center of the screen */
+.coordinates-box {
+  position: fixed;
+  bottom: 20px; /* Distance from the bottom */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Offset to truly center */
+  width: 150px; /* Width of the box */
+  height: 50px; /* Height of the box */
+  border: 0px solid rgba(0, 0, 0, 0.3); /* Light border */
+  border-radius: 25px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  z-index: 1000; /* Ensure it stays on top */
+  background: rgba(0, 0, 0, 0.1); /* Semi-transparent background */
+}
+
+
+.coordinates-box p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+}

@@ -1,0 +1,219 @@
+/* Ensure all elements use border-box for consistent padding */
+* {
+    box-sizing: border-box;
+  }
+  
+  /* Map container styling to ensure it takes up full screen */
+  .leaflet-container {
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  /* Search container styling */
+  .search-container {
+    position: absolute;
+    top: 20px; /* Position search bar near the top */
+    left: 50px; /* Increased distance from the left edge */
+    width: 300px; /* Adjust width for the search bar */
+    background-color: white;
+    border-radius: 25px; /* Oval shape */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    z-index: 1003; /* Ensure it floats over the map */
+  }
+  
+  /* Style for the search input field */
+  .search-container .react-autosuggest__input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 25px; /* Oval shape */
+    font-size: 16px;
+    outline: none;
+    box-sizing: border-box;
+  }
+  
+  /* Suggestions container styling */
+  .search-container .react-autosuggest__suggestions-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    max-height: 200px;
+    overflow-y: auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Individual suggestion styling */
+  .search-container .react-autosuggest__suggestion {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  /* Highlighted suggestion styling */
+  .search-container .react-autosuggest__suggestion--highlighted {
+    background: #f0f0f0; /* Active suggestion background */
+  }
+  
+  /* Category buttons container */
+  .category-buttons {
+    position: absolute;
+    top: 20px; /* Position buttons just below the search bar */
+    left: 360px; /* Increased distance from the left edge to the buttons */
+    display: flex;
+    gap: 20px;
+    z-index: 1000; /* Ensure they are over the map */
+  }
+  
+  /* Category button styling */
+  .category-buttons button {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 25px; /* Oval shape */
+    padding: 12px 30px; /* Add padding for width */
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Hover effect for buttons */
+  .category-buttons button:hover {
+    background-color: #f0f0f0;
+  }
+  
+  
+  
+  /* Panel header */
+  .places-panel h3 {
+    margin-top: 0;
+  }
+  
+  /* List of places in the panel */
+  .places-panel ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .places-panel li {
+    margin-bottom: 10px;
+  }
+  .coordinates-box {
+    position: fixed;
+    bottom: 20px; /* Distance from the bottom */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Offset to truly center */
+    width: 300px; /* Make the box wider */
+    height: 60px; /* Slightly taller box */
+    background-color: white; /* Solid white background */
+    border: 1px solid #ccc; /* Black border */
+    border-radius: 10px; /* Rounded corners */
+    display: flex;
+    justify-content: center; /* Center the text horizontally */
+    align-items: center; /* Center the text vertically */
+    font-family: Arial, sans-serif; /* Match the font with the category buttons */
+    font-size: 16px; /* Font size for the text */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    z-index: 10000; /* Ensure it stays on top of other content */
+  }
+  
+  .coordinates-box p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+/* Button to reset map pointer to user's location */
+.reset-location-btn {
+    position: absolute;
+    bottom: 30px;
+    right: 5%;
+    padding: 10px 15px;
+    background-color: white; /* Solid white background */
+    border: 1px solid #ccc;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+    z-index: 1000; /* Make sure the button is above the map */
+  }
+  
+  /* Button hover effect */
+  .reset-location-btn:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* Light background on hover */
+  }
+  
+  /* CSS for the places panel and toggle button */
+
+/* Places Panel */
+.places-panel {
+    position: absolute;
+    top: 100px;
+    left: 50px;
+    width: 300px;
+    max-height: 80%;
+    background-color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    overflow-y: auto;
+    z-index: 1000;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  /* Close Button */
+  .close-panel-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 1001;
+  }
+  
+  .close-panel-btn:hover {
+    background-color: #ff1a1a;
+  }
+  
+  
+  .place-info-box {
+    position: fixed;
+    bottom: 20px; /* Distance from the bottom */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Offset to truly center */
+    width: 300px; /* Make the box wider */
+    height: 120px; /* Double the height of the box */
+    background-color: white; /* Solid white background */
+    border: 1px solid #ccc; /* Black border */
+    border-radius: 10px; /* Rounded corners */
+    display: flex;
+    flex-direction: column; /* Stack text vertically */
+    justify-content: space-between; /* Distribute space between the text blocks */
+    align-items: center; /* Center the text horizontally */
+    font-family: Arial, sans-serif; /* Match the font with the category buttons */
+    font-size: 16px; /* Font size for the text */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    z-index: 10001; /* Ensure it stays on top of other content */
+    padding: 10px; /* Add padding inside the box */
+
+  }
+  
+ 
+  
