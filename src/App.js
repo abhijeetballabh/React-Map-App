@@ -66,12 +66,6 @@ function App() {
         setHasLocationPermission(true);
 
         setLowAccuracy(accuracy > 100);
-        // // Check accuracy of the location
-        // if (accuracy > 100) {
-        //   setLowAccuracy(true);
-        // } else {
-        //   setLowAccuracy(false);
-        // }
       },
       (error) => {
         console.error('Location permission denied or unavailable:', error);
@@ -201,11 +195,9 @@ function App() {
   // Component to handle map centering based on pointerLocation
   const CenterMap = () => {
     const map = useMap();
-    
     useEffect(() => {
       map.setView([pointerLocation.lat, pointerLocation.lng], 13);
     });
-
     return null;
   };
 
