@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -6,7 +6,7 @@ import Search from './Search';
 import axios from 'axios';
 
 
-// Fix marker icon issue in Leaflet
+
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
@@ -29,8 +29,7 @@ function App() {
   const [lowAccuracy, setLowAccuracy] = useState(false);
 
   const [pointerPopupText, setPointerPopupText] = useState('You are here!');
-  // const [isPopupVisible, setIsPopupVisible] = useState(false); // Manage popup visibility
-
+ 
 
   // Marker Icon to indicate default, fetched, or searched location
   const pointerIcon = new L.Icon({
@@ -76,7 +75,7 @@ function App() {
 
   // Fetch places from OpenStreetMap (Overpass API) based on category
   const fetchPlaces = async (lat, lng, category) => {
-    const radius = 1000; // radius in meters (1km)
+    const radius = 2000;
     const overpassCategory = category === 'museum' ? 'tourism' : 'amenity';
     const overpassUrl = `https://overpass-api.de/api/interpreter?data=[out:json];(node["${overpassCategory}"="${category}"](around:${radius},${lat},${lng}););out body;`;
 
@@ -100,20 +99,6 @@ function App() {
     setIsPanelVisible(true);
   };
   
-
-  // // Fetch image from Unsplash based on place name
-  // const fetchPlaceImages = async (placeName) => {
-  //   const unsplashApiUrl = `https://api.unsplash.com/search/photos?query=${placeName}&client_id=`;
-
-  //   try {
-  //     const response = await axios.get(unsplashApiUrl);
-  //     return response.data.results[0]?.urls?.regular || ''; 
-  //   } catch (error) {
-  //     console.error('Error fetching images:', error);
-  //     return '';
-  //   }
-  // };
-
   // Function to handle location change from Search component
   const onLocationChange = async (coords, locationName) => {
     let resolvedLocationName = locationName;
@@ -148,10 +133,9 @@ function App() {
 
   // Handle place selection from the map
   const handlePlaceSelect = async (placeName, placeCoords) => {
-    // const imageUrl = await fetchPlaceImages(placeName);
+    
     setPlaceDetails({
       name: placeName,
-      // imageUrl,
       coords: placeCoords,
     });
     setCustomPointerLocation({
@@ -196,7 +180,7 @@ function App() {
   const CenterMap = () => {
     const map = useMap();
     useEffect(() => {
-      map.setView([pointerLocation.lat, pointerLocation.lng], 13);
+      map.setView([pointerLocation.lat, pointerLocation.lng], 15);
     });
     return null;
   };
@@ -213,17 +197,14 @@ const onPlaceClick = (placeCoords, placeName) => {
       lat: placeCoords[0],
       lng: placeCoords[1],
     });
-    // console.log('1213hello')
-    
-    // console.log('new hello')
-    
-    
   };
 
-  // // Toggle visibility of the places panel
-  // const togglePanelVisibility = () => {
-  //   setIsPanelVisible((prevState) => !prevState);
-  // };
+  const togglePanelVisibility = () => {
+    setIsPanelVisible((prevState) => !prevState);
+    if (isPanelVisible) {
+      setCategoryPlaces([]); // Clear category markers when closing the panel
+    }
+  };
 
   return (
     <div style={{ height: '100vh', width: '100%' }}>
@@ -243,7 +224,7 @@ const onPlaceClick = (placeCoords, placeName) => {
       {/* Map container */}
       <MapContainer
         center={[location.lat, location.lng]}
-        zoom={13}
+        zoom={15}
         style={{ height: '100%', width: '100%' }}
         scrollWheelZoom={true} // Allow scroll zooming
       >
@@ -303,7 +284,7 @@ const onPlaceClick = (placeCoords, placeName) => {
       {isPanelVisible && (
         <div className="places-panel">
            {/* Close Button inside the panel */}
-          <button className="close-panel-btn" onClick={() => setIsPanelVisible(false)}>
+          <button className="close-panel-btn" onClick={togglePanelVisibility}>
             &times;
           </button>
           <h3>{selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)} Nearby</h3>
